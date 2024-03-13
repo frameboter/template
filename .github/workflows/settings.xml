@@ -17,7 +17,7 @@
                 </repository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/${env.REPO_OWNER}/${env.REPO_NAME}</url>
+                    <url>https://maven.pkg.github.com/${REPO_OWNER}/${REPO_NAME}</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -29,8 +29,8 @@
     <servers>
         <server>
             <id>github</id>
-            <username>${env.REPO_OWNER}</username>
-            <password>${env.GITHUB_TOKEN}</password>
+            <username>${REPO_OWNER}</username>
+            <password>${GITHUB_TOKEN}</password>
         </server>
     </servers>
 </settings>
