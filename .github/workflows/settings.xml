@@ -16,8 +16,15 @@
                     <url>https://repo1.maven.org/maven2</url>
                 </repository>
                 <repository>
-                    <id>github</id>
+                    <id>github_${OWNER}</id>
                     <url>https://maven.pkg.github.com/${OWNER}/*</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>github</id>
+                    <url>https://maven.pkg.github.com/frameboter/*</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -29,6 +36,11 @@
     <servers>
         <server>
             <id>github</id>
+            <username>${OWNER}</username>
+            <password>${ACCESS_TOKEN}</password>
+        </server>
+        <server>
+            <id>github_${OWNER}</id>
             <username>${OWNER}</username>
             <password>${ACCESS_TOKEN}</password>
         </server>
