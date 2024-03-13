@@ -17,7 +17,7 @@
                 </repository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/${REPO_OWNER}/${REPO_NAME}</url>
+                    <url>https://maven.pkg.github.com/frameboter/*</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
@@ -29,7 +29,7 @@
     <servers>
         <server>
             <id>github</id>
-            <username>${REPO_OWNER}</username>
+            <username>frameboter</username>
             <password>${GITHUB_TOKEN}</password>
         </server>
     </servers>
