@@ -17,14 +17,14 @@
                 </repository>
                 <repository>
                     <id>github</id>
-                    <url>https://maven.pkg.github.com/frameboter/*</url>
+                    <url>https://maven.pkg.github.com/frameboter/parent</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
                 <repository>
                     <id>github_${OWNER}</id>
-                    <url>https://maven.pkg.github.com/${OWNER}/*</url>
+                    <url>https://maven.pkg.github.com/${OWNER}/REPO_NAME</url>
                     <snapshots>
                         <enabled>true</enabled>
                     </snapshots>
