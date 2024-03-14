@@ -10,9 +10,9 @@ name: On push to branch and pull request to master
 
 on:
   push:
-    branches: [ "!master", !develop ]
+    branches: [ "!master"]
   pull_request:
-    branches: [ "master", develop ]
+    branches: [ "master", "develop" ]
 
 jobs:
   run_tests_and_add_coverage_to_pull_request:
