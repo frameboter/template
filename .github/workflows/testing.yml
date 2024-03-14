@@ -28,8 +28,8 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: run tests with Maven
-        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml -f pom.xml jacoco:check package --file pom.xml
+      - name: Build with Maven
+        run: mvn -s $GITHUB_WORKSPACE/.github/workflows/settings.xml jacoco:check package --file pom.xml
         env:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OWNER: ${{ github.repository_owner }}
