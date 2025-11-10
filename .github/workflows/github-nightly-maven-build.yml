@@ -42,3 +42,13 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.event.repository.name }}
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: ${{ github.event.repository.name }}
+          tags: nightly
+          registry: ghcr.io
+          dockerfile: Dockerfile
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.ACCESS_TOKEN }}
