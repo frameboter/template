@@ -45,9 +45,9 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: ${{ gitea.event.repository.name }}
+          image: ${{ gitea.repository_owner }}/${{ gitea.event.repository.name }}
           tags: latest
-          registry: gitea.roboter5123.com/api/packages/${{ gitea.repository_owner }}/docker
+          registry: gitea.roboter5123.com
           dockerfile: Dockerfile
           username: ${{ gitea.repository_owner }}
           password: ${{ secrets.ACCESS_TOKEN }}
