@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.frameboter</groupId>
         <artifactId>parent</artifactId>
-        <version>0.1.0</version>
+        <version>0.2.0-SNAPSHOT</version>
         <relativePath/>
     </parent>
     <groupId>com.frameboter</groupId>
@@ -13,47 +13,13 @@
     <version>0.1.0-SNAPSHOT</version>
     <name>backend-template</name>
     <description>backend-template</description>
+    <properties>
+        <frameboter.artifact.name>service</frameboter.artifact.name>
+        <frameboter.service.project>frameboter</frameboter.service.project>
+        <frameboter.service.repo>backend-template</frameboter.service.repo>
+    </properties>
 
     <dependencies>
     </dependencies>
-
-    <build>
-        <finalName>service</finalName>
-    </build>
-
- <profiles>
-        <profile>
-            <id>gitea-deploy</id>
-            <distributionManagement>
-                <repository>
-                    <id>gitea-deploy</id>
-                    <name>Gitea frameboter Maven Packages</name>
-                    <url>https://gitea.roboter5123.com/api/packages/frameboter/maven</url>
-                </repository>
-                <snapshotRepository>
-                    <id>gitea-deploy</id>
-                    <name>Gitea frameboter Maven Snapshots</name>
-                    <url>https://gitea.roboter5123.com/api/packages/frameboter/maven</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-
-        <profile>
-            <id>github-deploy</id>
-            <distributionManagement>
-                <repository>
-                    <id>github-deploy</id>
-                    <name>GitHub frameboter Apache Maven Packages</name>
-                    <url>https://maven.pkg.github.com/frameboter/backend-template</url>
-                </repository>
-                <snapshotRepository>
-                    <id>github-deploy</id>
-                    <name>GitHub frameboter Apache Maven Snapshots</name>
-                    <url>https://maven.pkg.github.com/frameboter/backend-template</url>
-                </snapshotRepository>
-            </distributionManagement>
-        </profile>
-
-    </profiles>
 
 </project>
