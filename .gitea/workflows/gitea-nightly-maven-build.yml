@@ -48,7 +48,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
           image: ${{ gitea.event.repository.name }}
-          tags: latest
+          tags: nightly
           registry: https://gitea.roboter5123.com/api/packages/${{ gitea.repository_owner }}/docker
           dockerfile: Dockerfile
           username: ${{ gitea.repository_owner }}
