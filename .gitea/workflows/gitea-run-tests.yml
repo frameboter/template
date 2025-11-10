@@ -14,9 +14,11 @@ jobs:
     permissions:
       contents: read
       packages: write
+      pull-requests: write  # Needed to comment on PRs
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -24,25 +26,24 @@ jobs:
           distribution: temurin
           server-id: gitea-deploy
           settings-path: ${{ gitea.workspace }}
+
       - name: Set up Maven
         uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.6
+
       - name: Build with Maven
         run: mvn -s ./.gitea/workflows/settings.xml jacoco:check package --file pom.xml
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           OWNER: ${{ gitea.repository_owner }}
           REPO_NAME: ${{ gitea.event.repository.name }}
-      - name: Add coverage to pull request
-        uses: madrapps/jacoco-report@v1.3
+
+      - name: Comment JaCoCo Coverage on Pull Request
+        uses: madrapps/jacoco-report@v1.7.2
         with:
-          paths: ./target/site/jacoco/jacoco.xml
+          paths: target/site/jacoco/jacoco.xml
           token: ${{ secrets.ACCESS_TOKEN }}
+          comment-type: pr-comment
           min-coverage-overall: 50
-          title: Coverage
-          update-comment: true
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          OWNER: ${{ gitea.repository_owner }}
-          REPO_NAME: ${{ gitea.event.repository.name }}
+          min-coverage-changed-files: 50
