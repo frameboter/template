@@ -49,7 +49,7 @@ jobs:
         with:
           image: ${{ gitea.event.repository.name }}
           tags: nightly
-          registry: https://gitea.roboter5123.com/api/packages/${{ gitea.repository_owner }}/docker
+          registry: gitea.roboter5123.com/api/packages/${{ gitea.repository_owner }}/docker
           dockerfile: Dockerfile
           username: ${{ gitea.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.ACCESS_TOKEN }}
