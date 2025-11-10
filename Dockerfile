@@ -1,4 +1,4 @@
-FROM openjdk:21
+FROM amazoncorretto:21
 EXPOSE 8080
 ENV database_url = ""
 ENV database_username = ""
