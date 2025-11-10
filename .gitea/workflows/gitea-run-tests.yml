@@ -44,6 +44,8 @@ jobs:
         with:
           paths: target/site/jacoco/jacoco.xml
           token: ${{ secrets.ACCESS_TOKEN }}
-          comment-type: pr-comment
+          comment-type: pr_comment
+          title: Pull Request Code Coverage
+          update-comment: true
           min-coverage-overall: 50
           min-coverage-changed-files: 50
