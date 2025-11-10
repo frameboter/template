@@ -41,3 +41,13 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           OWNER: ${{ gitea.repository_owner }}
           REPO_NAME: ${{ gitea.event.repository.name }}
+          
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: ${{ github.event.repository.name }}
+          tags: latest
+          registry: ghcr.io
+          dockerfile: Dockerfile
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
