@@ -20,21 +20,27 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
           java-version: '21'
           distribution: 'temurin'
           server-id: github-deploy # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
+
       - name: Build with Maven
-        run: mvn -B package -s $GITHUB_WORKSPACE/.github/workflows/settings.xml --file pom.xml
+        run: mvn -B clean install -s $GITHUB_WORKSPACE/.github/workflows/settings.xml --file pom.xml
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           OWNER: ${{ github.repository_owner }}
           REPO_NAME: ${{ github.event.repository.name }}
+
+      - name: Deploy OpenAPI Client to Gitea Maven Repo
+        run: mvn deploy --file target/generated-sources/java/pom.xml -DaltDeploymentRepository=gitea-deploy::default::https://gitea.roboter5123.com/api/packages/${{ gitea.repository_owner }}/maven -s ./.gitea/workflows/settings.xml
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy -s $GITHUB_WORKSPACE/.github/workflows/settings.xml
@@ -44,7 +50,7 @@ jobs:
           REPO_NAME: ${{ github.event.repository.name }}
 
       - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v5
+        uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: ${{ github.event.repository.name }}
           tags: nightly
